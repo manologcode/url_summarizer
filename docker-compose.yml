@@ -1,0 +1,17 @@
+
+services:
+  url_summarizer:
+    image: manologcode/url_summarizer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: url_summarizer
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5001"]
+    environment:
+      - URL_XTTS=http://192.168.1.69:5008
+      - LLM_MODEL=mistral
+      - LLM_URL=http://192.168.1.69:11434/api/generate
+    ports:
+      - 5001:5001
+    volumes:
+      - ./app:/app
