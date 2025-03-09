@@ -19,20 +19,17 @@ En general, en mi servidor self-hosted, todos los servicios corren en Docker. Es
    - Generador de texto a audio: [long_text_coqui GitHub](https://github.com/manologcode/long_text_coqui)
 
 ## Instalación y Ejecución
-1. Clona el repositorio:
-   ```sh
-   git clone https://github.com/tuusuario/url-summarizer.git
-   cd url-summarizer
-   ```
 
-2. En el archivo `docker-compose.yml` se encuentran las variables que apuntan a los servicios. Pueden ser el nombre del servicio Docker o la dirección de red:
+Para ejecutar este servicio tienes las siguientes opciones:
+
+- En el archivo `docker-compose.yml` se encuentran las variables que apuntan a los servicios. Pueden ser el nombre del servicio Docker o la dirección de red:
    ```sh
       - URL_XTTS=http://192.168.1.69:5008
       - LLM_MODEL=mistral
       - LLM_URL=http://ollama:11434/api/generate
    ```
 
-3. Ejecuta la aplicación directamente con Docker:
+- Ejecuta la aplicación directamente con Docker:
    ```sh
    docker run -d \
    --name url_summarizer \
@@ -43,7 +40,7 @@ En general, en mi servidor self-hosted, todos los servicios corren en Docker. Es
    manologcode/url_summarizer
    ```
 
-4. Accede a la aplicación en tu navegador en `http://localhost:5001`.
+Cuando el servicio esta en marcha se accede a la aplicación en tu navegador en `http://localhost:5001`.
 
 
 
