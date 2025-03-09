@@ -8,12 +8,9 @@ ENV TZ=Europe/Madrid \
     GUNICORN_BIND=0.0.0.0:5088 \
     GUNICORN_LOG_LEVEL=info
 
-# Instalar dependencias necesarias para la compilación
-RUN apk add --no-cache tzdata gcc musl-dev python3-dev libffi-dev \
-    openssl-dev cargo build-base g++ make
-
-# Configurar zona horaria
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && \
+# Instalar solo tzdata y eliminar archivos innecesarios
+RUN apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
 
 WORKDIR /app
@@ -39,5 +36,4 @@ EXPOSE 5088
 
 # Ejecutar Gunicorn con Uvicorn
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-w", "4", "-b", "0.0.0.0:5088", "app:app", "--log-level", "info"]
-
 
